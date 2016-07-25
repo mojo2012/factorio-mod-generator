@@ -4,6 +4,9 @@
 	<groupId>FactorioModGenerator</groupId>
 	<artifactId>FactorioModGenerator</artifactId>
 	<version>0.1</version>
+
+
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -11,8 +14,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
-					<source />
-					<target />
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
