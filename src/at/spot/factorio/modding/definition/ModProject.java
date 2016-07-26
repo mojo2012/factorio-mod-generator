@@ -1,8 +1,10 @@
 package at.spot.factorio.modding.definition;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import at.spot.factorio.modding.conversion.lua.ConversionException;
+import at.spot.factorio.modding.conversion.lua.LuaConverter;
 import at.spot.factorio.modding.entity.Entity;
 import at.spot.factorio.modding.item.Item;
 import at.spot.factorio.modding.l10n.Localization;
@@ -14,14 +16,26 @@ import at.spot.factorio.modding.technology.Technology;
  * This represents the whole mod. It's a container element for all the various
  * parts.
  */
-public class ModProject {
+public abstract class ModProject {
+	LuaConverter luaConverter;
+
 	protected Info					info;
-	protected List<Recipe>			recipes;
-	protected List<RecipeCategory>	recipeCategories;
-	protected List<Technology>		technologies;
-	protected List<Entity>			entities;
 	protected List<Item>			items;
+	protected List<Entity>			entities;
+	protected List<RecipeCategory>	recipeCategories;
+	protected List<Recipe>			recipes;
+	protected List<Technology>		technologies;
 	protected List<Localization>	localization;
+
+	public ModProject() {
+		this.luaConverter = LuaConverter.getInstance();
+		this.info = new Info();
+		this.items = new ArrayList<>();
+		this.entities = new ArrayList<>();
+		this.recipeCategories = new ArrayList<>();
+		this.recipes = new ArrayList<>();
+		this.technologies = new ArrayList<>();
+	}
 
 	public Info getInfo() {
 		return info;
@@ -79,4 +93,56 @@ public class ModProject {
 		this.localization = localization;
 	}
 
+	/**
+	 * Methods
+	 */
+
+	/**
+	 * Implement this and add your tile definitions.
+	 */
+	public abstract void addTiles();
+
+	/**
+	 * Implement this and add your item definitions.
+	 */
+	public abstract void addItems();
+
+	/**
+	 * Implement this and add your entity definitions.
+	 */
+	public abstract void addEnties();
+
+	/**
+	 * Implement this and add your recipe definitions.
+	 */
+	public abstract void addRecipes();
+
+	/**
+	 * Implement this and add your technology definitions.
+	 */
+	public abstract void addTechnologies();
+
+	/**
+	 * Deployes the generated mod to the given folder.
+	 */
+	public void generateMod(String destinationPath) {
+		// throw new RuntimeException("Not yet implemented");
+
+		generateItems();
+
+	}
+
+	protected void generateItems() {
+		for (Item i : getItems()) {
+			String luaItem;
+
+			try {
+				luaItem = luaConverter.convertToLuaObject(i);
+
+				System.out.println(luaItem);
+			} catch (ConversionException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

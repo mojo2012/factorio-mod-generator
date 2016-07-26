@@ -1,7 +1,7 @@
 package at.spot.factorio.modding.item;
 
 public enum TargetType {
-	Entity("entity"), Position("position"), direction("direction");
+	Entity("entity"), Position("position"), Direction("direction");
 	
 	String name;
 

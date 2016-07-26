@@ -2,39 +2,58 @@ package at.spot.factorio.modding.item;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import at.spot.factorio.modding.conversion.lua.LuaElement;
+import at.spot.factorio.modding.conversion.lua.LuaObject;
 import at.spot.factorio.modding.entity.Entity;
 import at.spot.factorio.modding.recipe.Group;
 
+@LuaObject
 public class Item {
-	protected ItemType	type;
-	protected String	name;
-	protected String	order;
+	@NotNull
+	@LuaElement()
+	protected ItemType type;
 
+	@NotNull
+	@LuaElement()
+	protected String name;
+
+	@NotNull
+	@LuaElement()
+	protected String order;
+
+	@NotNull
 	@LuaElement(name = "stack_size")
-	protected int stackSize;
+	protected Integer stackSize;
 
+	@NotNull
 	@LuaElement(name = "fuel_value")
-	protected double fuelValue;
+	protected Double fuelValue;
 
+	@LuaElement(name = "group")
 	protected Group group;
 
-	@LuaElement(name = "subgroup")
+	@LuaElement(name = "subgroup", property = "name")
 	protected Group subGroup;
 
 	@LuaElement(name = "place_result", property = "name")
 	protected Entity placeResult;
 
-	protected double speed;
+	@LuaElement()
+	protected Double speed;
 
 	@LuaElement(name = "magazine_size")
-	protected double magazineSize;
+	protected Double magazineSize;
 
 	@LuaElement(name = "default_request_amount")
-	protected int defaultRequestAmount;
+	protected Integer defaultRequestAmount;
 
-	protected List<Resistance>	resistances;
-	protected boolean			stackable;
+	@LuaElement()
+	protected List<Resistance> resistances;
+
+	@LuaElement()
+	protected Boolean stackable;
 
 	@LuaElement(name = "module_effects")
 	protected List<ModuleEffect> moduleEffects;

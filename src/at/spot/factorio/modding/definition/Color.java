@@ -1,21 +1,19 @@
 package at.spot.factorio.modding.definition;
 
-import at.spot.factorio.modding.conversion.lua.ConvertibleToLua;
-import at.spot.factorio.modding.conversion.lua.LuaConverter;
 import at.spot.factorio.modding.conversion.lua.LuaElement;
 
-public class Color implements ConvertibleToLua {
+public class Color {
 	@LuaElement(name = "r")
-	protected  byte	red;
-	
+	protected byte red;
+
 	@LuaElement(name = "g")
-	protected  byte	green;
-	
+	protected byte green;
+
 	@LuaElement(name = "b")
-	protected  byte	blue;
-	
+	protected byte blue;
+
 	@LuaElement(name = "a")
-	protected  byte	opacity;
+	protected byte opacity;
 
 	public byte getRed() {
 		return red;
@@ -47,10 +45,6 @@ public class Color implements ConvertibleToLua {
 
 	public void setOpacity(byte opacity) {
 		this.opacity = opacity;
-	}
-
-	public String toLuaTable() {
-		return LuaConverter.convertToLuaObject(this);
 	}
 
 }

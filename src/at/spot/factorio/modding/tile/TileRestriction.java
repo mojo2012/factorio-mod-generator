@@ -1,10 +1,8 @@
 package at.spot.factorio.modding.tile;
 
-import at.spot.factorio.modding.conversion.lua.ConvertibleToLua;
-import at.spot.factorio.modding.conversion.lua.LuaConverter;
 import at.spot.factorio.modding.conversion.lua.LuaElement;
 
-public class TileRestriction implements ConvertibleToLua {
+public class TileRestriction {
 
 	@LuaElement(name = "name")
 	Tile first;
@@ -28,8 +26,4 @@ public class TileRestriction implements ConvertibleToLua {
 		this.second = second;
 	}
 
-	@Override
-	public String toLuaTable() {
-		return LuaConverter.convertToLuaObject(this);
-	}
 }

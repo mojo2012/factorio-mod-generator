@@ -13,4 +13,5 @@ import java.lang.annotation.Target;
 public @interface LuaElement {
 	public abstract String name() default "";
 	public abstract String property() default "";
+	public abstract boolean printIfEmpty() default false;
 }

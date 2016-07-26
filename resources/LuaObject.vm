@@ -1,0 +1,5 @@
+$indent{
+#foreach($key in $attributes.keySet())
+$indent$indent$key = $attributes.get($key),
+#end
+$indent}
